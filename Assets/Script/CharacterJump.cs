@@ -6,7 +6,7 @@ namespace Script
     [RequireComponent(typeof(Rigidbody))]
     public class CharacterJump : MonoBehaviour
     {
-        [SerializeField] private Rigidbody _rigidbody;
+        private Rigidbody _rigidbody;
 
         [SerializeField] private float _heightCharacter;
         [SerializeField] private float _groundedDrag = 5f;
@@ -15,7 +15,12 @@ namespace Script
         
         private bool _readyToJump = true;
         private bool _grounded;
-        
+
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+        }
+
         private void FixedUpdate()
         {
             _grounded = Physics.Raycast(transform.position, Vector3.down, _heightCharacter * 0.5f + 0.3f);

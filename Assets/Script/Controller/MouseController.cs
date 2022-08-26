@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Script.Controller
 {
-    [RequireComponent(typeof(CharacterLook))]
     public class MouseController : MonoBehaviour
     {
         [SerializeField] private float _mouseSensitivity;

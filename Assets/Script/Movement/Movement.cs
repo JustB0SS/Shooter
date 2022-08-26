@@ -6,16 +6,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _rigidbody;
+    private Rigidbody _rigidbody;
     [SerializeField] private float _speed;
     [SerializeField] private float _heightCharacter;
     [SerializeField] private float _inAirMovementMultiplier;
     
     private Vector3 _normal;
 
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+    
     public void Move(Vector3 direction)
     {
-        Vector3 moveDirection = transform.forward * direction.x + transform.right * direction.y;
+        Vector3 moveDirection = transform.forward * direction.x + transform.right * direction.z;
         
         var grounded = Physics.Raycast(transform.position, Vector3.down, _heightCharacter * 0.5f + 0.3f);
         
